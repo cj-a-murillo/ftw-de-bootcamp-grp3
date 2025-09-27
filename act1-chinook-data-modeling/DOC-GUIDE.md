@@ -217,7 +217,7 @@ Document every error encountered and share with the team. As well as the fix if 
             * Decided to run once the dlt to make sure the data consistency being loaded in our raw tables.
     2. Slowness of the server
         - Given that we have different users updating on the same server, hence it slows down a bit the production of our processing, but so far it is still manageable.
-    3. Since each of us did the whole process from start to finish, it's questionable that we have different results of computation when we did the exercises especially on the part of identifying the monthly sales trend, employees performance quarterly. 
+    3. Since each of us did the whole process from start to finish, it's questionable that we have different results of computation when we did the exercises especially on the part of identifying the monthly sales trend, employees performance quarterly. But most importantly, we were able to understand more the process of how the pipelines work, how to debug the errors we encountered.
 
 ---
 
