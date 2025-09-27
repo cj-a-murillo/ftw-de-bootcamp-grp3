@@ -1,1 +1,0 @@
-{"_invocation_id": "fe5d6148-2cee-42d6-b0a2-83f9f522a955", "linked": {"0": {"name": "source.ex_01_mpg.raw.autompg___cars", "type": "source", "succ": [2]}, "1": {"name": "model.ex_01_mpg.cylinders_by_origin", "type": "model"}, "2": {"name": "model.ex_01_mpg.mpg_standardized", "type": "model", "succ": [1]}}}
