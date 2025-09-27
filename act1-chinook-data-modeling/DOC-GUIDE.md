@@ -263,10 +263,10 @@ Document every error encountered and share with the team. As well as the fix if 
 - **Key Insights:**  
   - *(Highlight 1–2 interesting findings. Example: “Rock was the top genre in North America, while Latin genres dominated in South America.”)*  
     **Rock** dominates globally: Rock music generates the highest revenue across most countries, with the USA leading at $180 in total revenue, followed by Brazil and France, showing rock's universal appeal in the music market.
-    <img src="https://i.imgur.com/5MnNGPi.png" height="200">
+    - <img src="https://i.imgur.com/5MnNGPi.png" height="200">
 
     **Customer spending** is highly concentrated: The majority of customers (59 total) fall into the Low spending tier, with only a small segment in High spending, indicating potential opportunities for targeted marketing to convert medium spenders and retain high-value customers.
-    <img src="https://i.imgur.com/WwFSLjA.png" height="200">
+    - <img src="https://i.imgur.com/WwFSLjA.png" height="200">
     
 
 
