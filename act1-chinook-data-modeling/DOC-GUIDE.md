@@ -9,15 +9,26 @@ Follow the structure below, fill in your team’s work, and use it as both inter
 
 - **Dataset Used:**  
   *(Briefly describe the dataset and domain — e.g., Chinook music store, OULAD education dataset, or IMDb entertainment dataset.)*  
-
+  [Dataset Link](https://raw.githubusercontent.com/lerocha/chinook-database/master/ChinookDatabase/DataSources/Chinook_PostgreSql.sql)
+  
 - **Goal of the Exercise:**  
   *(What was the objective? Example: transform OLTP schema into dimensional star schema for analytics.)*  
-
+  The goal was to convert the normalized Chinook dataset into a dimensional model to answer the business questions given to us by group. The objective was to "consistently store efficient data that is trustable" by building a robust data pipeline that our team could rely on for analytics.
+  
 - **Team Setup:**  
   *(State if you worked individually, as a group, or both. Mention collaboration style.)*  
-
+  We worked as a collaborative group, with each team member taking responsibility for their own pipeline components while contributing to the overall project. Our collaboration style involved individual ownership of pipeline sections - each of us personalized our naming conventions (like changing the dataset = chinook_[nickname] using our nicknames to name pipeline) while working toward shared business objectives. We coordinated our work to ensure compatibility and could learn from each other's approaches.
+  
 - **Environment Setup:**  
   *(Describe your environment — local vs remote, individual vs shared instances. Example: Docker containers on a shared VM + local laptops.)*  
+  We used a shared remote environment that allowed us to collaborate effectively:
+
+  - Shared ClickHouse server at IP 54.87.106.52 where all team members could access the same infrastructure
+  - Individual credentials (each of us had our own ftw_user accounts) to maintain separation while sharing resources
+  - Docker containers for running DLT and DBT jobs, ensuring consistency across our team's development environments
+  - Local DBeaver instances on our individual laptops for database management and SQL development
+  - Shared Metabase instance for collaborative data visualization and dashboard creation
+  - Hybrid approach - we could work locally on our laptops while executing jobs on the shared remote infrastructure
 
 ---
 
