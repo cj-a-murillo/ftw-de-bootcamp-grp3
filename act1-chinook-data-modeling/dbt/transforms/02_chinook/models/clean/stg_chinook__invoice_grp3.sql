@@ -4,7 +4,7 @@
 select
   cast(invoice_id                       as Int64)        as invoice_id,
   cast(customer_id                      as Int64)        as customer_id,
-  cast(invoice_date                     as DateTime)    as invoice_date,
+  cast(invoice_date                     as Date)    as invoice_date,
   cast(COALESCE(billing_address,'')     as String) as billing_address,
   cast(COALESCE(billing_city,'')        as String) as billing_city,
   cast(COALESCE(billing_state, '')      as String) as billing_state,

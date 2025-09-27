@@ -4,4 +4,4 @@
 select
   artist_id,
   artist_name
-from {{ ref('stg_cj_chinook__artist_grp3') }}
+from {{ ref('stg_chinook__artist_grp3') }}

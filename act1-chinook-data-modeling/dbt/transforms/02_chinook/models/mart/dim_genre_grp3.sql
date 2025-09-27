@@ -3,4 +3,4 @@
 select
   genre_id,
   genre_name
-from {{ ref('stg_cj_chinook__genre_cj') }}
+from {{ ref('stg_chinook__genre_grp3') }}
