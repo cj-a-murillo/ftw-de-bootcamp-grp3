@@ -1,4 +1,5 @@
-# 📝 Beginner Data Engineer Documentation & Presentation Guide
+
+ # 📝 Beginner Data Engineer Documentation & Presentation Guide
 
 This guide is for documenting and presenting your group’s **dimensional modeling exercise**.  
 Follow the structure below, fill in your team’s work, and use it as both internal documentation and a final presentation outline.  
@@ -12,18 +13,24 @@ Follow the structure below, fill in your team’s work, and use it as both inter
 
 - **Goal of the Exercise:**  
   *(What was the objective? Example: transform OLTP schema into dimensional star schema for analytics.)*  
-  The goal was to convert the normalized Chinook dataset into a dimensional model to answer the business questions given to us by group. The objective was to "consistently store efficient data that is trustable" by building a robust data pipeline that our team could rely on for analytics.
+  The goal was to convert the normalized **Chinook dataset** into a dimensional model to answer the business questions given to us by group. The objective was to "consistently store efficient data that is trustable" by building a robust data pipeline that our team could rely on for analytics.
+
+<div style="display: flex; align-items: center; gap: 10px;">
+  <img src="https://i.imgur.com/0jWu4Mp.png" height="250">
+  <img src="https://i.imgur.com/iGPYV5V.png" height="250">
+</div>
+
 
 - **Team Setup:**  
   *(State if you worked individually, as a group, or both. Mention collaboration style.)*  
-  We worked as a collaborative group, with each team member taking responsibility for their own pipeline components while contributing to the overall project. Our collaboration style involved individual ownership of pipeline sections.
-Used personalized naming conventions (like `dataset = chinook_[nickname]`) for individual ownership
-Coordinated work to ensure compatibility across different pipeline implementations
-Shared learning and troubleshooting approaches while working toward shared business objectives
+  We worked as a collaborative group, with each team member taking responsibility for their own pipeline components while contributing to the overall project. 
+    - Used personalized naming conventions (like `dataset = chinook_[nickname]`) for individual ownership
+    - Coordinated work to ensure compatibility across different pipeline implementations
+    - Shared learning and troubleshooting approaches while working toward shared business objectives
 
 - **Environment Setup:**  
   *(Describe your environment — local vs remote, individual vs shared instances. Example: Docker containers on a shared VM + local laptops.)*  
-  We used a shared remote environment that allowed us to collaborate effectively:
+  - We used a shared remote environment that allowed us to collaborate effectively:
 
   - Shared ClickHouse server at IP 54.87.106.52 where all team members could access the same infrastructure
   - Individual credentials (each of us had our own ftw_user accounts) to maintain separation while sharing resources
@@ -134,10 +141,13 @@ Practiced the collaborative debugging and problem-solving approach typical in da
 
 - **Next Steps with More Time:**  
   *(E.g., add orchestration with Airflow/Prefect, implement testing, optimize queries, handle larger datasets.)*  
+    - 
 
 - **Generalization:**  
   *(How this workflow could be applied to other datasets or business domains.)*  
-
+    - Add data quality tests & validation in DBT
+    - Optimize ClickHouse queries & tables for large datasets
+    - Set up Git workflow for collaborative DBT development
 ---
 
 ## 📢 Presentation Tips
@@ -151,4 +161,3 @@ Practiced the collaborative debugging and problem-solving approach typical in da
 ---
 
 ✅ By filling this template, your group will produce a professional-style project guide **just like real data engineers** — clear, structured, and insight-driven.
-
