@@ -72,7 +72,7 @@
 
 
 ---
-
+## 2. Tools
 - **Tools Used:**  
   - Ingestion: `dlt`  
 DLT: Data Loading Tool (Extra and Load)
