@@ -105,6 +105,7 @@ The team agreed to try out first the exercise hands on. Then we check if we have
 
   - Visualization: `Metabase`
    [![Metabase](https://img.shields.io/badge/Metabase-509EE3?style=for-the-badge&logo=metabase&logoColor=white)](https://www.metabase.com/)
+
 Metabase provides a simple, user-friendly interface to explore and visualize data.
 Helps translate business questions into dashboards quickly without writing complex queries each time.
 Supports drill-downs andinteractive charts, which enhances decision-making.
