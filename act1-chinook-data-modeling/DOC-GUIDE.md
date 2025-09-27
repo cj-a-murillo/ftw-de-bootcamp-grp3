@@ -121,7 +121,7 @@ Documentation at every step is important for team collaboration and handover.
 Document every error encountered and share with the team. As well as the fix if you were able to fix the error. 
 
 
-  *(Add others if used.)*  
+ 
 
  **Medallion Architecture Application:**  
   - **Bronze (Raw):** Initial ingestion of source data  
