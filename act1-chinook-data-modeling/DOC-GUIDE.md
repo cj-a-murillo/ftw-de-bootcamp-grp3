@@ -100,14 +100,85 @@ Document every error encountered and share with the team. As well as the fix if 
 ## 3. Modeling Process
 
 - **Source Structure (Normalized):**  
-  *(Describe how the original tables were structured — 3NF, relationships, etc.)*  
+  *(Describe how the original tables were structured — 3NF, relationships, etc.)*
+  * The chinook datasets were already normalized so there's no normalization applied to it during the process except the standardization of the data for each table.
+  * We used the naming convention for our staging with: stg_chinook_<table_name>_grp3
+  *  Creation of staging tables in the CLEAN folder for the following:
+        - stg_chinook_album_grp3
+        - stg_chinook_artist_grp3
+        - stg_chinook_customer_grp3
+        - stg_chinook_genre_grp3
+        - stg_chinook_invoice_line_grp3
+        - stg_chinook_invoice_grp3
+        - stg_chinook_tracks_grp3
+    * During the cleaning stage, below are the formatting and standardization applied from raw source to the clean destionation folder:
+        - Removal of leading and trailing spaces
+        - Cross checking of total counts between tables from raw and cleaned tables
+        - Since the data type for date column is using a timestamp but it's noticeable that there's no time indicatd, hence the change of the data type to date only using cast
 
 - **Star Schema Design:**  
-  - Fact Tables: *(e.g., FactSales, FactAssessment, FactRatings)*  
-  - Dimension Tables: *(e.g., Customer, Date, Genre, Student, Demographics, Title, Person)*  
+  - Fact Tables:
+    * with our fact table, we joined the following tables to add all the columns that contain numerical values:
+        - stg_chinook_invoice_line_grp3
+        - stg_chinook_invoice_grp3
+        - stg_chinook_tracks_grp3
+        - stg_chinook_customer_grp3
+    * The table is called: **fact_invoice_line_grp3** with the below columns:
+        * invoice_id
+        * customer_id
+        * track_id
+        * invoice_date
+        * quantity
+        * line_amount (multiplied the unit_price and quantity)
+  - Dimension Tables: 
+    * For the Dimension tables we created 7 dimension tables:
+        * dim_album_grp3
+            * album_id
+            * album_title
+            * artist_id
+        * dim_artist_grp3
+            * artist_id
+            * artist_name
+        * dim_date_grp3
+            * invoice_id
+            * invoice_date
+            * month_num (for the purpose of easier monthly and quarterly computation)
+            * month_name (optional: easier to use when presenting in metabase)
+            * date_year (for the purpose of yearly computation)
+        * dim_genre_grp3
+            * genre_id
+            * genre_name
+            * track_id
+        * dim_invoice_grp3
+            * invoice_id
+            * invoice_date
+            * customer_id
+        * dim_track_grp3
+            * track_id
+            * track_name
+            * album_id
+            * genre_id
+        * dim_customer_grp3
+            * customer_id
+            * country
+            * invoice_id
+            * support_rep_id (this is the employee id)
+
+    **Note:** At this point we didn't use the employee table since it's already existing in the customer table. Unless the requirement will ask us to indicate the details of the employee then that'll be a different story.
 
 - **Challenges / Tradeoffs:**  
   *(E.g., handling missing data, many-to-many joins, exploding arrays, performance considerations.)*  
+
+  1. Row counts differ when we check the tables from each member. 
+        - Reason is that when we relood the DLT, it appends new data regardless if it's a duplicate entries. 
+        - Solution: 
+            * Deleted all the tables created previously.
+            * Changed the data set name 
+            * Temporarily enabled the dev_mode to True.
+            * Decided to run once the dlt to make sure the data consistency being loaded in our raw tables.
+    2. Slowness of the server
+        - Given that we have different users updating on the same server, hence it slows down a bit the production of our processing, but so far it is still manageable.
+    3. Since each of us did the whole process from start to finish, it's questionable that we have different results of computation when we did the exercises especially on the part of identifying the monthly sales trend, employees performance quarterly. 
 
 ---
 
