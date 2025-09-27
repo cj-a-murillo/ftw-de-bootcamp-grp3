@@ -70,6 +70,9 @@
   - Shared Metabase instance for collaborative data visualization and dashboard creation
   - Hybrid approach - we could work locally on our laptops while executing jobs on the shared remote infrastructure
 
+  
+<img width="1038" height="467" alt="image" src="https://github.com/user-attachments/assets/65a6810b-8c01-4de4-9df3-87f75a49c518" />
+
 
 ---
 ## 2. Tools
