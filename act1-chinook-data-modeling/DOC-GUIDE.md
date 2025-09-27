@@ -9,7 +9,7 @@
     - The Chinook database is a sample digital music store with 11 interconnected tables covering artists, albums, tracks, genres, customers, employees, invoices, and invoice lines. 
     - It models  music catalog management, customer transactions, and business operations, similar to platforms like iTunes or Spotify.
 
-# Chinook Database Schema Overview
+# Chinook Database Schema Overview 🎵
 
 ## Table Structure
 
