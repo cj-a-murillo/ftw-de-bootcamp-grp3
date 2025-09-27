@@ -114,7 +114,7 @@ def run():
     pipeline = dlt.pipeline(
         pipeline_name="02-dlt-chinook-pipeline",
         destination="clickhouse",
-        dataset_name="chinook_cj", # change yun dataset name if an error occured, ex: chinook_cj  #old:chinook
+        dataset_name="chinook_grp3", # change yun dataset name if an error occured, ex: chinook_grp3  #old:chinook
         dev_mode=False   # set True if you want DLT to drop & recreate tables on each run
     )
     
