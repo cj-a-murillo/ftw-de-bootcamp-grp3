@@ -1,20 +1,10 @@
 {{ config(materialized="table", schema="mart", tags=["mart","chinook"]) }}
 
 -- Album dimension, denormalized with artist_name (common convenience).
-with album as (
-  select * from {{ ref('stg_cj_chinook__album_cj') }}
-),
-artist as (
-  select * from {{ ref('stg_cj_chinook__artist_cj') }}
-)
 select
-  a.album_id as album_id,
-  a.album_title as album_title,
-  a.artist_id as artist_id,
-  ar.artist_name as artist_name
-from album a
-left join artist ar
-  on ar.artist_id = a.artist_id
+  album_id,
+  album_title
+from {{ ref('stg_chinook__album_grp3') }}
 
 
 /* Pwede pa mabago ito joins, lalo na kung mag-snowflake 
