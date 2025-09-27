@@ -131,6 +131,8 @@ Document every error encountered and share with the team. As well as the fix if 
 
 ## 3. Modeling Process
 
+<img width="807" height="827" alt="image" src="https://github.com/user-attachments/assets/2f7a2219-92f5-4316-8015-f211c5211bed" />
+
 - **Source Structure (Normalized):**  
   *(Describe how the original tables were structured — 3NF, relationships, etc.)*
   * The chinook datasets were already normalized so there's no normalization applied to it during the process except the standardization of the data for each table.
