@@ -1,0 +1,6 @@
+adapter: clickhouse_connect
+port:    8123
+user:    ftw_user
+password: ftw_pass
+database: raw          # target DB
+

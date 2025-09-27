@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<yandex>
+  <users>
+    <ftw_user>
+      <password>ftw_pass</password>
+      <networks>
+        <ip>::/0</ip>
+      </networks>
+      <profile>default</profile>
+      <quota>default</quota>
+      <allow_databases>
+        <database>default</database>
+        <database>raw</database>
+        <database>clean</database>
+        <database>mart</database>
+        <database>sandbox</database>
+      </allow_databases>
+    </ftw_user>
+  </users>
+</yandex>
+

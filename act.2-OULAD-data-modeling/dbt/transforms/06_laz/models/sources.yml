@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw
+    database: raw
+    tables:
+      - name: lazada_products_20250827063214___lazada_products   
+        description: lazada_products_20250827063214___lazada_products

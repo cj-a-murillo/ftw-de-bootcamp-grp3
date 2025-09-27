@@ -1,0 +1,6 @@
+dlt
+dlt[clickhouse]
+clickhouse-connect
+pandas            # if your extractor uses it
+psycopg2-binary
+openpyxl

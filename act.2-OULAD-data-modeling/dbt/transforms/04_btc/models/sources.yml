@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw
+    database: raw
+    tables:
+      - name: btc___market_price   
+        # If ClickHouse shows btc___market_price, map it like this:
+        # identifier: btc___market_price
+        description: CoinGecko /coins/markets snapshot for BTC ingested via dlt

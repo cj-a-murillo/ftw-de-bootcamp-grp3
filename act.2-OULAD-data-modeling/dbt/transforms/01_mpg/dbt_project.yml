@@ -1,0 +1,16 @@
+name: "ex_01_mpg"
+version: "1.0"
+config-version: 2
+
+profile: clickhouse_ftw
+model-paths: ["models"]
+macro-paths: ["macros"]  
+
+models:
+  ex_01_mpg:
+    clean:
+      +schema: clean
+      +materialized: table
+    mart:
+      +schema: mart
+      +materialized: view

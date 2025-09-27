@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    database: raw
+    tables:
+      - name: pokemon___gen1   
+        description: pokemon___gen1
+      - name: pokemon___gen1__abilities   
+        description: pokemon___gen1__abilities
+      - name: pokemon___gen1__types   
+        description: pokemon___gen1__types
+        

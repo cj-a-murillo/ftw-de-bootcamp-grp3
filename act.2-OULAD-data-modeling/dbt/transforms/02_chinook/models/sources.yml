@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw
+    database: raw  # Explicitly specify ClickHouse database
+    tables:
+      - name: chinook___artists
+      - name: chinook___albums

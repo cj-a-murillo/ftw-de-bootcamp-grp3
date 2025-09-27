@@ -1,0 +1,16 @@
+name: "ex_02_chinook"
+version: "1.0"
+config-version: 2
+
+profile: clickhouse_ftw
+model-paths: ["models"]
+macro-paths: ["macros"]  
+
+models:
+  ex_02_chinook:
+    clean:
+      +schema: clean
+      +materialized: table
+    mart:
+      +schema: mart
+      +materialized: view

@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: stg_meteo__manila
+    description: Cleaned daily Manila weather from Open-Meteo (ClickHouse staging view)
+    columns:
+      - name: dte
+        tests: [not_null, unique]
+      - name: temp_min_c
+        tests: [not_null]
+      - name: temp_max_c
+        tests: [not_null]
+      - name: precip_mm
+      - name: weather_code

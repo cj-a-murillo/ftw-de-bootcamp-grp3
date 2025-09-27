@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw  # Explicitly specify ClickHouse database
+    tables:
+      - name: autompg___cars     # Must match EXACTLY (3 underscores)

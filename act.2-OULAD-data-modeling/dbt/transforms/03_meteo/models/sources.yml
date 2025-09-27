@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: raw
+    database: raw              # ClickHouse database; matches your dlt env
+    tables:
+      - name: meteo___manila    # created by dlt (dataset "meteo", resource "manila")
+        description: Open-Meteo daily archive for Metro Manila (past 365d, lag 2d)
+        
+      # models/sources/meteo_sources.yml (add under sources: raw: tables:)
+      - name: meteo__wmo_codes
+        identifier: meteo___wmo_codes   # use this if SHOW TABLES shows three underscores
+        description: WMO code night/day labels & icons (ingested via dlt)
+
+      - name: meteo___regions_daily
+        # If SHOW TABLES shows meteo___regions_daily, add:
+        # identifier: meteo___regions_daily
+        description: PH regions 7-day archive (Open-Meteo), one row per region/day

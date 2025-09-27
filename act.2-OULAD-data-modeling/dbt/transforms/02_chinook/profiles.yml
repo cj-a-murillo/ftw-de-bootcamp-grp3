@@ -1,0 +1,24 @@
+# Self-contained profile for this exercise
+clickhouse_ftw:
+  target: local
+  outputs:
+    local:
+      type: clickhouse
+      host: clickhouse          # LOCAL all-in-one: keep "clickhouse"
+      # For REMOTE class: set to your server IP/DNS, e.g. 34.12.34.56
+      port: 8123
+      user: ftw_user            # same creds you already use
+      password: ftw_pass
+      schema: mart          # ClickHouse "database". For isolation you can set ftw_myk01
+      threads: 4
+      secure: false
+
+    remote:
+      type: clickhouse
+      host: 54.87.106.52 # For REMOTE class: set to your server IP/DNS, e.g. 34.12.34.56
+      port: 8123
+      user: ftw_user
+      password: ftw_pass
+      schema: mart
+      threads: 4
+      secure: false
