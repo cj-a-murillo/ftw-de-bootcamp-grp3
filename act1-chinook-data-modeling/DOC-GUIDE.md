@@ -9,16 +9,18 @@ Follow the structure below, fill in your team’s work, and use it as both inter
 
 - **Dataset Used:**  
   *(Briefly describe the dataset and domain — e.g., Chinook music store, OULAD education dataset, or IMDb entertainment dataset.)*  
-  [Dataset Link](https://raw.githubusercontent.com/lerocha/chinook-database/master/ChinookDatabase/DataSources/Chinook_PostgreSql.sql)
-  
+
 - **Goal of the Exercise:**  
   *(What was the objective? Example: transform OLTP schema into dimensional star schema for analytics.)*  
   The goal was to convert the normalized Chinook dataset into a dimensional model to answer the business questions given to us by group. The objective was to "consistently store efficient data that is trustable" by building a robust data pipeline that our team could rely on for analytics.
-  
+
 - **Team Setup:**  
   *(State if you worked individually, as a group, or both. Mention collaboration style.)*  
-  We worked as a collaborative group, with each team member taking responsibility for their own pipeline components while contributing to the overall project. Our collaboration style involved individual ownership of pipeline sections - each of us personalized our naming conventions (like changing the dataset = chinook_[nickname] using our nicknames to name pipeline) while working toward shared business objectives. We coordinated our work to ensure compatibility and could learn from each other's approaches.
-  
+  We worked as a collaborative group, with each team member taking responsibility for their own pipeline components while contributing to the overall project. Our collaboration style involved individual ownership of pipeline sections.
+Used personalized naming conventions (like `dataset = chinook_[nickname]`) for individual ownership
+Coordinated work to ensure compatibility across different pipeline implementations
+Shared learning and troubleshooting approaches while working toward shared business objectives
+
 - **Environment Setup:**  
   *(Describe your environment — local vs remote, individual vs shared instances. Example: Docker containers on a shared VM + local laptops.)*  
   We used a shared remote environment that allowed us to collaborate effectively:
@@ -30,15 +32,20 @@ Follow the structure below, fill in your team’s work, and use it as both inter
   - Shared Metabase instance for collaborative data visualization and dashboard creation
   - Hybrid approach - we could work locally on our laptops while executing jobs on the shared remote infrastructure
 
+
 ---
 
 ## 2. Architecture & Workflow
 
 - **Pipeline Flow:**  
-  *(Diagram or describe: raw → clean → mart → BI.)*  
+  *(Diagram or describe: raw → clean → mart → BI.)* 
+
+![DIAGRAM](https://i.imgur.com/Iznh8At.png)
 
 - **Tools Used:**  
   - Ingestion: `dlt`  
+ 
+
   - Modeling: `dbt`  
   - Visualization: `Metabase`  
   *(Add others if used.)*  
@@ -70,12 +77,25 @@ Follow the structure below, fill in your team’s work, and use it as both inter
 
 - **Task Splitting:**  
   *(How the team divided ingestion, modeling, BI dashboards, documentation.)*  
+Met at 8pm with Sir Myk to understand the assignment better
+Decided each team member should complete the entire pipeline individually (ingestion through modeling to visualization) so everyone could experience the full process
+CJ took the lead on Metabase dashboards and coordinated our BI efforts
 
 - **Shared vs Local Work:**  
   *(Issues faced with sync conflicts, version control, DB connections, etc.)*  
+Faced inconsistent raw data - different row counts for the same tables between groupmates
+Scheduled Thursday 8pm meeting to brainstorm and establish single source of truth for queries
+Encountered database connection issues when multiple members accessed shared ClickHouse server simultaneously
+
 
 - **Best Practices Learned:**  
   *(E.g., using Git for dbt projects, naming conventions, documenting assumptions, group debugging sessions.)*  
+Used personalized naming conventions (like "_nickname") to prevent conflicts
+Documented assumptions to resolve data discrepancies
+Held group debugging sessions during Thursday meeting
+Learned to establish single source of truth early to prevent consistency issues
+Coordinated pipeline execution to avoid server overload
+Maintained regular check-ins to catch problems before they became blockers
 
 ---
 
@@ -98,13 +118,16 @@ Follow the structure below, fill in your team’s work, and use it as both inter
 
 - **Technical Learnings:**  
   *(E.g., SQL joins, window functions, dbt builds/tests, schema design.)*  
-
+-
 - **Team Learnings:**  
   *(E.g., collaboration in shared environments, version control, importance of documentation.)*  
 
 - **Real-World Connection:**  
   *(How this exercise relates to actual data engineering workflows in industry.)*  
-
+Experienced common data engineering challenges like data quality issues and pipeline coordination
+Applied modern data stack tools (DLT, DBT, ClickHouse, Metabase) that are widely used in industry
+Learned the medallion architecture pattern that's standard in enterprise data platforms
+Practiced the collaborative debugging and problem-solving approach typical in data engineering teams
 ---
 
 ## 7. Future Improvements
@@ -128,3 +151,4 @@ Follow the structure below, fill in your team’s work, and use it as both inter
 ---
 
 ✅ By filling this template, your group will produce a professional-style project guide **just like real data engineers** — clear, structured, and insight-driven.
+
