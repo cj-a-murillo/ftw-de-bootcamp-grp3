@@ -88,9 +88,12 @@ Document every error encountered and share with the team. As well as the fix if 
   *(Add others if used.)*  
 
  **Medallion Architecture Application:**  
-  - **Bronze (Raw):** Initial ingestion of source data  
-  - **Silver (Clean):** Cleaning, type casting, handling missing values  
-  - **Gold (Mart):** Business-ready star schema for BI  
+  - **Bronze (Raw):** Initial ingestion of source data
+     - Cleaning and Type casting (unprocessed csv, original columns and values)
+  - **Silver (Clean):** Cleaning, type casting, handling missing value
+     - cleaned tables, corrected data types, joined raw tables
+  - **Gold (Mart):** Business-ready star schema for BI
+     - star schema, business-ready tables
 
 *(Insert diagram or screenshot here if possible.)*  
 
@@ -178,7 +181,8 @@ Document every error encountered and share with the team. As well as the fix if 
             * Decided to run once the dlt to make sure the data consistency being loaded in our raw tables.
     2. Slowness of the server
         - Given that we have different users updating on the same server, hence it slows down a bit the production of our processing, but so far it is still manageable.
-    3. Since each of us did the whole process from start to finish, it's questionable that we have different results of computation when we did the exercises especially on the part of identifying the monthly sales trend, employees performance quarterly. 
+    3. Since each of us did the whole process from start to finish, it's questionable that we have different results of computation when we did the exercises especially on the part of identifying the monthly sales trend, employees performance quarterly.
+    4. Server error, database not connecting due to internet connection with restrictions (VPN).
 
 ---
 
@@ -241,7 +245,8 @@ Document every error encountered and share with the team. As well as the fix if 
   *(E.g., SQL joins, window functions, dbt builds/tests, schema design.)*  
 
 - **Team Learnings:**  
-  *(E.g., collaboration in shared environments, version control, importance of documentation.)*  
+  *(E.g., collaboration in shared environments, version control, importance of documentation.)*
+   - Team collaboration, working together on the same codebase or data environment taught us the importance of communication. 
 
 - **Real-World Connection:**  
   *(How this exercise relates to actual data engineering workflows in industry.)*  
