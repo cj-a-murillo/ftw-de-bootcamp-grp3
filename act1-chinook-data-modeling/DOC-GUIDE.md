@@ -68,8 +68,6 @@ Follow the structure below, fill in your team’s work, and use it as both inter
 
 ## 3. Modeling Process
 
-## 3. Modeling Process
-
 - **Source Structure (Normalized):**  
   *(Describe how the original tables were structured — 3NF, relationships, etc.)*
   * The chinook datasets were already normalized so there's no normalization applied to it during the process except the standardization of the data for each table.
