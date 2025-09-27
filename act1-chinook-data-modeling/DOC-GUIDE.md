@@ -202,6 +202,9 @@ Document every error encountered and share with the team. As well as the fix if 
         ```
     **Note:** At this point we didn't use the employee table since it's already existing in the customer table. Unless the requirement will ask us to indicate the details of the employee then that'll be a different story.
 
+    <img width="555" height="611" alt="image" src="https://github.com/user-attachments/assets/34c17146-919a-4409-9b12-f0f1d26182f6" />
+
+
 - **Challenges / Tradeoffs:**  
   *(E.g., handling missing data, many-to-many joins, exploding arrays, performance considerations.)*  
 
