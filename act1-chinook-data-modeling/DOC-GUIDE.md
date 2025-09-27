@@ -76,8 +76,10 @@
 
 ---
 ## 2. Tools
-- **Tools Used:**  
-  - Ingestion: `dlt`  
+- **Tools Used:**
+  - Ingestion: `dlt`
+    [![dltHub](https://img.shields.io/badge/dltHub-FF6F00?style=for-the-badge&logo=databricks&logoColor=white)](https://dlthub.com/)
+ 
 DLT: Data Loading Tool (Extra and Load)
 Importance of changing data_set value on re-runs:
 Prevents overwriting existing raw data.
@@ -87,9 +89,9 @@ Automating ingestion with dlt reduces manual intervention and ensures reproducib
 @dlt.resource(write_disposition="append", name="artists_lacopia")
 def artists(): Here name value should be changed. Not changing this will result in database error. 
 
-  - Modeling: `dbt`  
+  - Modeling: `dbt`
+    [![dltHub](https://img.shields.io/badge/dltHub-FF6F00?style=for-the-badge&logo=databricks&logoColor=white)](https://dlthub.com/)
   - dbt (Data Build Tool) allows transformations in SQL while maintaining modularity with models, seeds, snapshots, and tests.
-
 It encourages the following: 
 Version control for transformations.
 Testing of models (e.g., uniqueness, not null).
@@ -101,7 +103,8 @@ Incorrect naming of sources in the cleaning of data will result in these errors.
 
 The team agreed to try out first the exercise hands on. Then we check if we have the same results on the questions given. 
 
-  - Visualization: `Metabase`  
+  - Visualization: `Metabase`
+   [![Metabase](https://img.shields.io/badge/Metabase-509EE3?style=for-the-badge&logo=metabase&logoColor=white)](https://www.metabase.com/)
 Metabase provides a simple, user-friendly interface to explore and visualize data.
 Helps translate business questions into dashboards quickly without writing complex queries each time.
 Supports drill-downs andinteractive charts, which enhances decision-making.
