@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw  # Explicitly specify ClickHouse database
+    tables:
+      - name: oulad_grp3___vle     # Must match EXACTLY (3 underscores)

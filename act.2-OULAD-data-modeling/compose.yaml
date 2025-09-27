@@ -91,7 +91,6 @@ services:
         ls -lh /initdb
     volumes:
       - chinook_init:/initdb
-    restart: "no"
     profiles: ["core"]
 
   postgres_chinook:
@@ -144,7 +143,7 @@ services:
       # ── CLICKHOUSE DESTINATION (EDIT HERE for LOCAL vs REMOTE) ─────────────
       # LOCAL (default): use the service name "clickhouse"
       # REMOTE: set CH_HOST to your SERVER public IP or DNS (e.g., "34.12.34.56")
-      DESTINATION__CLICKHOUSE__CREDENTIALS__HOST:       "clickhouse" #"clickhouse"   # ← change to "54.87.106.52" for REMOTE
+      DESTINATION__CLICKHOUSE__CREDENTIALS__HOST:       "54.87.106.52" #"clickhouse"   # ← change to "54.87.106.52" for REMOTE
       DESTINATION__CLICKHOUSE__CREDENTIALS__PORT:       "9000"
       DESTINATION__CLICKHOUSE__CREDENTIALS__HTTP_PORT:  "8123"
       DESTINATION__CLICKHOUSE__CREDENTIALS__USERNAME:   "ftw_user"     # ← teacher sets this on server
