@@ -4,5 +4,11 @@ sources:
   - name: raw
     database: raw  # Explicitly specify ClickHouse database
     tables:
-      - name: chinook___artists
-      - name: chinook___albums
+      - name: chinook_cj___albums
+      - name: chinook_cj___artists
+      - name: chinook_cj___customers
+      - name: chinook_cj___employees
+      - name: chinook_cj___genres
+      - name: chinook_cj___invoice_lines
+      - name: chinook_cj___invoices
+      - name: chinook_cj___tracks

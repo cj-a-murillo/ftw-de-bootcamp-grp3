@@ -1,0 +1,8 @@
+{{ config(materialized="table", schema="clean", tags=["staging","chinook"]) }}
+
+-- Keep album grain; standardize names/types.
+select
+  cast(album_id  as Int64)             as album_id,
+  cast(title     as String)     as album_title,
+  cast(artist_id as Int64)             as artist_id
+from {{ source('raw', 'chinook_cj___albums') }}

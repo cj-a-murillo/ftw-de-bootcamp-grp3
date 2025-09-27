@@ -1,6 +1,6 @@
 # Self-contained profile for this exercise
 clickhouse_ftw:
-  target: local
+  target: remote
   outputs:
     local:
       type: clickhouse

@@ -37,7 +37,6 @@ services:
 
   clickhouse:
     image: clickhouse/clickhouse-server:23.12
-    restart: unless-stopped
     # platform: linux/amd64    # ← uncomment on Apple Silicon ONLY if you hit arch errors
     container_name: clickhouse
     ports:
@@ -58,7 +57,6 @@ services:
 
   metabase:
     image: metabase/metabase:latest
-    restart: unless-stopped
     # platform: linux/amd64    # ← uncomment on Apple Silicon ONLY if you hit arch errors
     container_name: metabase
     ports:
@@ -78,7 +76,6 @@ services:
  
   chinook_fetch:
     image: alpine:3.20
-    restart: "no"
     entrypoint: /bin/sh
     command:
       - -c
@@ -96,22 +93,11 @@ services:
 
   postgres_chinook:
     image: postgres:14-alpine
-    restart: unless-stopped
     container_name: chinook_postgres
     environment:
       POSTGRES_DB: postgres        # 👈 connect here so DROP/CREATE chinook works
       POSTGRES_USER: chinook
       POSTGRES_PASSWORD: chinook
-    command:
-      - postgres
-      - -c
-      - max_connections=300        # was 100
-      - -c
-      - shared_buffers=512MB       # raise a bit with more conns
-      - -c
-      - work_mem=8MB               # modest per-connection
-      - -c
-      - effective_cache_size=1GB
     volumes:
       - chinook_init:/docker-entrypoint-initdb.d:ro
       - pgdata:/var/lib/postgresql/data
@@ -144,7 +130,7 @@ services:
       # ── CLICKHOUSE DESTINATION (EDIT HERE for LOCAL vs REMOTE) ─────────────
       # LOCAL (default): use the service name "clickhouse"
       # REMOTE: set CH_HOST to your SERVER public IP or DNS (e.g., "34.12.34.56")
-      DESTINATION__CLICKHOUSE__CREDENTIALS__HOST:       "clickhouse" #"clickhouse"   # ← change to "54.87.106.52" for REMOTE
+      DESTINATION__CLICKHOUSE__CREDENTIALS__HOST:       "54.87.106.52" #"clickhouse"   # ← change to "54.87.106.52" for REMOTE server
       DESTINATION__CLICKHOUSE__CREDENTIALS__PORT:       "9000"
       DESTINATION__CLICKHOUSE__CREDENTIALS__HTTP_PORT:  "8123"
       DESTINATION__CLICKHOUSE__CREDENTIALS__USERNAME:   "ftw_user"     # ← teacher sets this on server
@@ -154,7 +140,7 @@ services:
       # ───────────────────────────────────────────────────────────────────────
 
       # Chinook Postgres SOURCE (internal-only; do not expose on host)
-      POSTGRES_HOST:     "chinook_postgres"
+      POSTGRES_HOST:     "54.87.106.52" #local: chinook_postgres
       POSTGRES_PORT:     "5432"
       POSTGRES_USER:     "chinook"
       POSTGRES_PASSWORD: "chinook"

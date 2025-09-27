@@ -3,7 +3,8 @@ import dlt, pandas as pd
 import os
 
 # https://archive.ics.uci.edu/dataset/9/auto+mpg
-@dlt.resource(name="cars")
+#@dlt.resource(name="cars") # resource name is used as table name (So car is the table name here)
+@dlt.resource(name="cars_cj")
 def mpg():
    
     

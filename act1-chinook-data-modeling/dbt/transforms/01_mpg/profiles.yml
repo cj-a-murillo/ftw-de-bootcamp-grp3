@@ -1,6 +1,7 @@
 # Self-contained profile for this exercise
 clickhouse_ftw:
-  target: local
+  #target: local    # ← change to "remote" when pointing to server
+  target: remote   # ← change to "local" when working locally
   outputs:
     local:
       type: clickhouse
@@ -15,10 +16,13 @@ clickhouse_ftw:
 
     remote:
       type: clickhouse
-      host: 54.87.106.52 # For REMOTE class: set to your server IP/DNS, e.g. 34.12.34.56
+      host: 54.87.106.52 # For REMOTE class: set to your server IP/DNS, e.g. 34.12.34.56, (To create a different server, kuha differnt PC then lagyan ng linux then kunin yun IP to point yun)
       port: 8123
       user: ftw_user
       password: ftw_pass
       schema: mart
       threads: 4
       secure: false
+
+
+      #To change the target table:
