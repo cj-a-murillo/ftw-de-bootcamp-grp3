@@ -10,7 +10,7 @@ dlt/**/trace.pickle
 dlt/**/state.json
 dlt/**/.version
 dlt/pipelines/
-dlt/.dlt/secrets.toml
+#dlt/.dlt/secrets.toml
 
 
 # Editor files
