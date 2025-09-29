@@ -5,3 +5,9 @@ sources:
     schema: raw  # Explicitly specify ClickHouse database
     tables:
       - name: oulad_grp3___vle     # Must match EXACTLY (3 underscores)
+      - name: oulad_grp3___student_registration
+      - name: oulad_grp3___student_info
+      - name: oulad_grp3___student_assessment
+      - name: oulad_grp3___courses
+      - name: oulad_grp3___assessments
+      - name: studentVle
