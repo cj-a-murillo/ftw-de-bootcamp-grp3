@@ -1,6 +1,19 @@
 # Mart SQL Models
 
+# Dimensions
+- [dim_oulad_age_band_grp3.sql](#dim_oulad_age_band_grp3sql)
+- [dim_oulad_assessment_type_grp3.sql](#dim_oulad_assessment_type_grp3sql)
+- [dim_oulad_course_grp3.sql](#dim_oulad_course_grp3sql)
+- [dim_oulad_final_result_grp3.sql](#dim_oulad_final_result_grp3sql)
+- [dim_oulad_highest_education_grp3.sql](#dim_oulad_highest_education_grp3sql)
+- [dim_oulad_imd_band_grp3.sql](#dim_oulad_imd_band_grp3sql)
+- [dim_oulad_region_grp3.sql](#dim_oulad_region_grp3sql)
 
+# Facts
+- [fact_oulad_student_course_result_grp3.sql](#fact_oulad_student_course_result_grp3sql)
+- [fact_oulad_student_assessment_grp3.sql](#fact_oulad_student_assessment_grp3sql)
+
+  
 
 ## dim_oulad_age_band_grp3.sql
 ```sql
