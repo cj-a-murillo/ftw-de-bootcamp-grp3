@@ -115,17 +115,17 @@ from {{ source('clean', 'stg_oulad_region_grp3') }}
 {{ config(materialized="table", schema="mart", tags=["fact","grp3"]) }}
 
 select 
-    sa.student_id,
-    a.assessment_id,
-    a.course_id,
-    a.assessment_type_id,
-    a.assessment_date,
-    a.assessment_weight,
-    sa.date_submitted,
-    sa.is_banked,
-    sa.score
+    sa.student_id as student_id,
+    a.assessment_id as assessment_id,
+    a.course_id as course_id,
+    a.assessment_type_id as assessment_type_id,
+    a.assessment_date as assessment_date,
+    a.assessment_weight as assessment_weight,
+    sa.date_submitted as date_submitted,
+    sa.is_banked as is_banked,
+    sa.score as score
 from {{ source('clean', 'stg_oulad_student_assessment_grp3') }} sa
-join {{ source('clean', 'stg_oulad_assessment_grp3') }} a  -- CHANGED: removed 's'
+join {{ source('clean', 'stg_oulad_assessment_grp3') }} a  
     on sa.assessment_id = a.assessment_id
 order by student_id, assessment_id
 ```
@@ -138,11 +138,11 @@ order by student_id, assessment_id
 {{ config(materialized="table", schema="mart", tags=["fact","grp3"]) }}
 
 select 
-    sr.student_id,
-    sr.course_id,
-    c.code_module,
-    c.code_presentation,
-    si.final_result_id,
+    sr.student_id as student_id,
+    sr.course_id as course_id,
+    c.code_module as code_module,
+    c.code_presentation as code_presentation,
+    si.final_result_id as final_result_id,
     
     -- Flags
     case when si.final_result_id = 1 then 1 else 0 end as withdrawn_flag,
