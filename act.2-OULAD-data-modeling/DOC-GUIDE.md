@@ -1,119 +1,216 @@
-# 📝 Beginner Data Engineer Documentation & Presentation Guide
 
-This guide is for documenting and presenting your group’s **dimensional modeling exercise**.  
-Follow the structure below, fill in your team’s work, and use it as both internal documentation and a final presentation outline.  
-
----
+# 📝 Dimensional Modeling Documentation & Presentation (OULAD Project)
 
 ## 1. Project Overview
 
-- **Dataset Used:**  
-  *(Briefly describe the dataset and domain — e.g., Chinook music store, OULAD education dataset, or IMDb entertainment dataset.)*  
+* **Dataset Used:**
+  Open University Learning Analytics Dataset (OULAD) [link](https://analyse.kmi.open.ac.uk/open-dataset).
 
-- **Goal of the Exercise:**  
-  *(What was the objective? Example: transform OLTP schema into dimensional star schema for analytics.)*  
+* **Goal of the Exercise:**
+  We built an end-to-end pipeline on the OULAD dataset using dlt for ingestion, dbt for cleaning and modeling, and Metabase for BI. The goal was to transform the normalized OLTP schema into a dimensional star schema and practice data engineering skills from ingestion to visualization.
 
-- **Team Setup:**  
-  *(State if you worked individually, as a group, or both. Mention collaboration style.)*  
 
-- **Environment Setup:**  
-  *(Describe your environment — local vs remote, individual vs shared instances. Example: Docker containers on a shared VM + local laptops.)*  
+* **Team Setup:**
+  Tasks split across ingestion, cleaning, dbt modeling, visualization dashboards, and documentation. 
+
+* **Environment Setup:**
+  Local + shared environment. Work executed in **sandbox schema** with dbt jobs for cleaning and transformations.
 
 ---
 
 ## 2. Architecture & Workflow
 
-- **Pipeline Flow:**  
-  *(Diagram or describe: raw → clean → mart → BI.)*  
+* **Pipeline Flow:**
+  `raw -> clean -> mart -> visualization (Metabase)`
+  ### Ingestion Script
+  - This is useful when ingesting multiple CSV files.
+  ```
+      # dlt/pipeline.py
+      import dlt, pandas as pd
+      import os
+      
+      @dlt.resource(name="assessments", write_disposition="replace")
+      def assessments():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "assessments.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      @dlt.resource(name="courses", write_disposition="replace")
+      def courses():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "courses.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      @dlt.resource(name="student_assessment", write_disposition="replace")
+      def student_assessment():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "studentAssessment.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      @dlt.resource(name="student_info", write_disposition="replace")
+      def student_info():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "studentInfo.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      @dlt.resource(name="student_registration", write_disposition="replace")
+      def student_registration():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "studentRegistration.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      @dlt.resource(name="vle", write_disposition="replace")
+      def vle():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "vle.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      # ----------------------------
+      # Run pipeline
+      # ----------------------------
+      
+      def run_pipeline():
+          """Load each OULAD CSV as a separate table"""
+          p = dlt.pipeline(
+              pipeline_name="oulad-pipeline",
+              destination="clickhouse",
+              dataset_name="oulad_grp3",
+          )
+          print("Fetching and loading each file as separate resource...")
+      
+          info = p.run([
+              assessments(),
+              courses(),
+              student_assessment(),
+              student_info(),
+              student_registration(),
+              vle()
+          ])
+      
+          print("Records loaded:", info)
+      
+      if __name__ == "__main__":
+          run_pipeline()
 
-- **Tools Used:**  
-  - Ingestion: `dlt`  
-  - Modeling: `dbt`  
-  - Visualization: `Metabase`  
-  *(Add others if used.)*  
+  ```
+ ## Mart Models
+ Read more here -> [Mart SQL Models](https://github.com/cj-a-murillo/ftw-de-bootcamp-grp3/blob/main/act.2-OULAD-data-modeling/Mart-SQL-Models.md)
+ 
+* **Tools Used:**
 
-- **Medallion Architecture Application:**  
-  - **Bronze (Raw):** Initial ingestion of source data  
-  - **Silver (Clean):** Cleaning, type casting, handling missing values  
-  - **Gold (Mart):** Business-ready star schema for BI  
+  * Ingestion: `dlt`
+  * Modeling: `dbt`
+  * Visualization: `Metabase`
 
-*(Insert diagram or screenshot here if possible.)*  
+* **Medallion Layers:**
+
+  * **Bronze (Raw):** Direct OULAD source ingestion
+  * **Silver (Clean):** Type casting, formatting, removing invalids (`?` -> NULL, boolean conversions, deduplication)
+  * **Gold (Mart):** Star schema with fact tables + dimensions
 
 ---
 
 ## 3. Modeling Process
 
-- **Source Structure (Normalized):**  
-  *(Describe how the original tables were structured — 3NF, relationships, etc.)*  
+* **Source Structure (Normalized):**
+  7 original raw tables (student info, registration, student assessment, assessments, courses, VLE, student vle, ) 
 
-- **Star Schema Design:**  
-  - Fact Tables: *(e.g., FactSales, FactAssessment, FactRatings)*  
-  - Dimension Tables: *(e.g., Customer, Date, Genre, Student, Demographics, Title, Person)*  
+* **Star Schema Design:**
 
-- **Challenges / Tradeoffs:**  
-  *(E.g., handling missing data, many-to-many joins, exploding arrays, performance considerations.)*  
+  * **Fact Tables:**
+
+    * Student Assessment (Student demographics, Final result) 
+    * Student Course Result (Course scores, type of assessments, date submitted, etc.)
+   
+  * **Dimension Tables:**
+
+    * Course, Semester, Year, Region, Gender, Age Band, IMD Band, Education, Assessment Type, Result
+
+* **Challenges / Tradeoffs:**
+
+  * Handling `Withdrawn` and `Fail` categories vs Pass/Distinction
+  * Deciding whether to normalize at clean stage or only in mart
+  * Potential snowflaking with the initial creation of highly normalized tables vs creating a star schema
+  * Prioritizing which features are best for the Fact Table and the normalized Dim tables  
 
 ---
 
 ## 4. Collaboration & Setup
 
-- **Task Splitting:**  
-  *(How the team divided ingestion, modeling, BI dashboards, documentation.)*  
+* **Task Splitting (DBT Clean Stage):**
 
-- **Shared vs Local Work:**  
-  *(Issues faced with sync conflicts, version control, DB connections, etc.)*  
+  * The tables were split among some of the members, while the remaining were tasked to convert and push the finalized tables into dbt format.
 
-- **Best Practices Learned:**  
-  *(E.g., using Git for dbt projects, naming conventions, documenting assumptions, group debugging sessions.)*  
+* **Shared vs Local Work:**
+  Some sync issues and need to align on schema conventions (`stg_oulad_<table>_grp3`).
+
+* **Best Practices Learned:**
+
+  * Use Git for dbt projects
+  * Consistent naming conventions
+  * Flatten where possible (example gender column -> we directly wrote Male/Female/Others instead of having another table reference)
+  * Group debugging sessions helped align schema decisions
+  * Prepare the business questions before selecting and planning the schema design.
+  * Before pushing the tables, always recheck and validate the number of rows from the raw tables and the sandbox conceptualization tables.
 
 ---
 
 ## 5. Business Questions & Insights
 
-- **Business Questions Explored:**  
-  1. *(Example: Who are the top customers by revenue?)*  
-  2. *(Example: What factors contribute to student dropout?)*  
-  3. *(Example: Which genres/actors perform best in ratings?)*  
+* **Main Business Question:**
+  *What is the average passing percentage per course module and per semester?*
 
-- **Dashboards / Queries:**  
-  *(Add screenshots, SQL snippets, or summaries of dashboards created in Metabase.)*  
+  * Formula: `Passing % = (students passed ÷ students enrolled) × 100`
+  * Visualization: **Bar chart** of passing rate per module/semester
 
-- **Key Insights:**  
-  - *(Highlight 1–2 interesting findings. Example: “Rock was the top genre in North America, while Latin genres dominated in South America.”)*  
+* **Sub-Questions:**
+
+  1. Factors influencing completion rate (final_result): disability, region, age band, IMD band, highest education.
+  2. Effect of number of semesters registered on completion rate.
+  3. Correlation between submission type (`is_banked`) and test scores.
+  4. Impact of registration/unregistration dates on performance.
+
+* **Key Insights (early):**
+
+  * `Withdrawn` counts or dropouts are high in high IMD bands and lower-education bands.
+  * Curriculum developers can focus on reducing Fail + Withdrawn rather than increasing Pass/Distinction.
 
 ---
 
 ## 6. Key Learnings
 
-- **Technical Learnings:**  
-  *(E.g., SQL joins, window functions, dbt builds/tests, schema design.)*  
+* **Technical:**
 
-- **Team Learnings:**  
-  *(E.g., collaboration in shared environments, version control, importance of documentation.)*  
+  * dbt staging, casting, and building dimension/fact tables
+  * SQL joins + aggregation for BI questions
+  * Handling missing/boolean conversions
 
-- **Real-World Connection:**  
-  *(How this exercise relates to actual data engineering workflows in industry.)*  
+* **Team:**
+
+  * Collaboration in shared schema
+  * Documenting transformations
+  * Deciding tradeoffs: normalize early vs in mart
+
+* **Real-World Connection:**
+  Mimics industry medallion architecture: raw ingestion → clean data → BI-ready mart.
+  Handles real-world data from an online university dataset.
 
 ---
 
 ## 7. Future Improvements
 
-- **Next Steps with More Time:**  
-  *(E.g., add orchestration with Airflow/Prefect, implement testing, optimize queries, handle larger datasets.)*  
-
-- **Generalization:**  
-  *(How this workflow could be applied to other datasets or business domains.)*  
+* More testing/validation in dbt
+* Optimize large tables (`student_vle` ~10M rows)
+* Automate dashboards for different stakeholders (Curriculum Dev, Admission Head)
+* Generalize pipeline for other education datasets
 
 ---
 
 ## 📢 Presentation Tips
 
-- Keep it **5–10 minutes**, like a project walkthrough.  
-- Use **diagrams, screenshots, and SQL snippets**.  
-- Focus on both **technical process** and **business insights**.  
-- End with your **key learnings and future improvements**.  
-- For other documentation tips. Read [this](TECHNICAL-DOCS.md).
+* 5–10 min walkthrough with **ERD diagrams + SQL snippets + dashboards**
+* Start with **business problem → model → insights**
+* Highlight **failures/withdrawals trend** for stakeholder relevance
+* End with **learnings + future improvements**
 
----
 
-✅ By filling this template, your group will produce a professional-style project guide **just like real data engineers** — clear, structured, and insight-driven.
