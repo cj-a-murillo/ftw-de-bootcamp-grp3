@@ -2,12 +2,27 @@ version: 2
 
 sources:
   - name: raw
-    schema: raw  # Explicitly specify ClickHouse database
+    database: raw  
     tables:
-      - name: oulad_grp3___vle     # Must match EXACTLY (3 underscores)
-      - name: oulad_grp3___student_registration
-      - name: oulad_grp3___student_info
-      - name: oulad_grp3___student_assessment
-      - name: oulad_grp3___courses
       - name: oulad_grp3___assessments
-      - name: studentVle
+      - name: oulad_grp3___courses
+      - name: oulad_grp3___student_assessment
+      - name: oulad_grp3___student_info
+      - name: oulad_grp3___student_registration
+      - name: oulad_grp3___vle    
+
+  - name: clean
+    database: clean  
+    tables:
+      - name: stg_oulad_age_band_grp3
+      - name: stg_oulad_assessment_grp3
+      - name: stg_oulad_assessment_type_grp3
+      - name: stg_oulad_course_grp3
+      - name: stg_oulad_final_result_grp3
+      - name: stg_oulad_highest_educ_grp3
+      - name: stg_oulad_imd_band_grp3
+      - name: stg_oulad_region_grp3
+      - name: stg_oulad_student_assessment_grp3
+      - name: stg_oulad_student_info_grp3
+      - name: stg_oulad_student_registration_grp3
+      - name: stg_oulad_vle_grp3
