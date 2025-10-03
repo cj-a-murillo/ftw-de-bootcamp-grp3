@@ -117,14 +117,25 @@
 
 * **Star Schema Design:**
 
-  * **Fact Tables:**
+  Star Schema Design:
 
-    * Student Assessment (Student demographics, Final result) 
-    * Student Course Result (Course scores, type of assessments, date submitted, etc.)
-   
-  * **Dimension Tables:**
+    ### Fact Tables:
 
-    * Course, Semester, Year, Region, Gender, Age Band, IMD Band, Education, Assessment Type, Result
+    - fact_oulad_student_course_result (Student enrollments, final results, pass/fail/withdrawn flags)
+    - fact_oulad_student_assessment (Assessment scores, submission dates, assessment weights)
+
+
+    ### Dimension Tables:
+
+    - dim_oulad_student (Student demographics including gender, disability, previous attempts, studied credits)
+    - dim_oulad_course (Course module, presentation, year)
+    - dim_oulad_final_result (Pass, Fail, Distinction, Withdrawn)
+    - dim_oulad_assessment_type (TMA, CMA, Exam, etc.)
+    - dim_oulad_age_band (Age groups)
+    - dim_oulad_region (Geographic regions)
+    - dim_oulad_highest_education (Education levels)
+    - dim_oulad_imd_band (Index of Multiple Deprivation bands)
+    
   ![ERD Image](ERD.png)
   [OULAD ERD dbdiagram.io](https://dbdiagram.io/d/OULAD-Schema-Group-3-68dbd565d2b621e422993150)
 
