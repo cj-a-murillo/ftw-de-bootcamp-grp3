@@ -93,7 +93,7 @@
           run_pipeline()
 
   ```
- # Mart Models
+ ## Mart Models
  Read more here -> [Mart SQL Models](https://github.com/cj-a-murillo/ftw-de-bootcamp-grp3/blob/main/act.2-OULAD-data-modeling/Mart-SQL-Models.md)
  
 * **Tools Used:**
