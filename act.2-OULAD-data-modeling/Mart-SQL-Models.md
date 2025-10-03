@@ -1,10 +1,6 @@
 # Mart SQL Models
 
 
-````markdown
-# Mart SQL Models (`cat mart/*.sql`)
-
----
 
 ## dim_oulad_age_band_grp3.sql
 ```sql
