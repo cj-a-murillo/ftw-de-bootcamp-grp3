@@ -45,7 +45,9 @@
 * **Star Schema Design:**
 
   * **Fact Tables:**
- [add]
+
+    * Student Assessment (Student demographics, Final result) 
+    * Student Course Result (Course scores, type of assessments, date submitted, etc.)
    
   * **Dimension Tables:**
 
@@ -56,6 +58,7 @@
   * Handling `Withdrawn` and `Fail` categories vs Pass/Distinction
   * Deciding whether to normalize at clean stage or only in mart
   * Potential snowflaking with the initial creation of highly normalized tables vs creating a star schema
+  * Prioritizing which features are best for the Fact Table and the normalized Dim tables  
 
 ---
 
@@ -63,7 +66,7 @@
 
 * **Task Splitting (DBT Clean Stage):**
 
- [add]
+  * The tables were split among some of the members, while the remaining were tasked to convert and push the finalized tables into dbt format.
 
 * **Shared vs Local Work:**
   Some sync issues and need to align on schema conventions (`stg_oulad_<table>_grp3`).
@@ -74,6 +77,8 @@
   * Consistent naming conventions
   * Flatten where possible (example gender column -> we directly wrote Male/Female/Others instead of having another table reference)
   * Group debugging sessions helped align schema decisions
+  * Prepare the business questions before selecting and planning the schema design.
+  * Before pushing the tables, always recheck and validate the number of rows from the raw tables and the sandbox conceptualization tables.
 
 ---
 
@@ -94,8 +99,8 @@
 
 * **Key Insights (early):**
 
-  * `Withdrawn` counts are high in some regions and lower-education bands.
-  * Curriculum developers can focus on reducing Fail + Withdrawn rather than Pass/Distinction.
+  * `Withdrawn` counts or dropouts are high in high IMD bands and lower-education bands.
+  * Curriculum developers can focus on reducing Fail + Withdrawn rather than increasing Pass/Distinction.
 
 ---
 
@@ -115,6 +120,7 @@
 
 * **Real-World Connection:**
   Mimics industry medallion architecture: raw ingestion → clean data → BI-ready mart.
+  Handles real-world data from an online university dataset.
 
 ---
 
