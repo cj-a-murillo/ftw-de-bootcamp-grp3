@@ -148,9 +148,9 @@ join {{ source('clean', 'stg_oulad_student_info_grp3') }} si
 order by sr.course_id, sr.student_id
 ```
 
----
 
-```
 
----
+
+
+
 
