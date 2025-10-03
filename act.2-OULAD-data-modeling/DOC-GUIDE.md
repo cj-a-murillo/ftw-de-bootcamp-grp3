@@ -22,6 +22,77 @@
 
 * **Pipeline Flow:**
   `raw -> clean -> mart -> visualization (Metabase)`
+  ### Ingestion Script
+  - This is useful when ingesting multiple CSV files.
+  ```
+      # dlt/pipeline.py
+      import dlt, pandas as pd
+      import os
+      
+      @dlt.resource(name="assessments", write_disposition="replace")
+      def assessments():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "assessments.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      @dlt.resource(name="courses", write_disposition="replace")
+      def courses():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "courses.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      @dlt.resource(name="student_assessment", write_disposition="replace")
+      def student_assessment():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "studentAssessment.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      @dlt.resource(name="student_info", write_disposition="replace")
+      def student_info():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "studentInfo.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      @dlt.resource(name="student_registration", write_disposition="replace")
+      def student_registration():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "studentRegistration.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      @dlt.resource(name="vle", write_disposition="replace")
+      def vle():
+          ROOT_DIR = os.path.dirname(__file__)
+          FILE_PATH = os.path.join(ROOT_DIR, "staging", "oulad", "vle.csv")
+          yield pd.read_csv(FILE_PATH)
+      
+      # ----------------------------
+      # Run pipeline
+      # ----------------------------
+      
+      def run_pipeline():
+          """Load each OULAD CSV as a separate table"""
+          p = dlt.pipeline(
+              pipeline_name="oulad-pipeline",
+              destination="clickhouse",
+              dataset_name="oulad_grp3",
+          )
+          print("Fetching and loading each file as separate resource...")
+      
+          info = p.run([
+              assessments(),
+              courses(),
+              student_assessment(),
+              student_info(),
+              student_registration(),
+              vle()
+          ])
+      
+          print("Records loaded:", info)
+      
+      if __name__ == "__main__":
+          run_pipeline()
+```
+
 
 * **Tools Used:**
 
@@ -140,7 +211,4 @@
 * Highlight **failures/withdrawals trend** for stakeholder relevance
 * End with **learnings + future improvements**
 
-
-[add
-- ingestion process, using csv files ]
 
