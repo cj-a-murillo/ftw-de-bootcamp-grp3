@@ -125,6 +125,8 @@
   * **Dimension Tables:**
 
     * Course, Semester, Year, Region, Gender, Age Band, IMD Band, Education, Assessment Type, Result
+  ![ERD Image](ERD.png)
+  [OULAD ERD dbdiagram.io](https://dbdiagram.io/d/OULAD-Schema-Group-3-68dbd565d2b621e422993150)
 
 * **Challenges / Tradeoffs:**
 
